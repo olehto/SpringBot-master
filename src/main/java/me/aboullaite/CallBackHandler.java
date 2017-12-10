@@ -56,8 +56,8 @@ public class CallBackHandler {
      * @param sendClient  the initialized {@code MessengerSendClient}
      */
     @Autowired
-    public CallBackHandler(@Value("${messenger4j.appSecret}") final String appSecret,
-                                            @Value("${messenger4j.verifyToken}") final String verifyToken,
+    public CallBackHandler(@Value("28115df6638c239afacd1a3d1c2981f6") final String appSecret,
+                                            @Value("2749048215") final String verifyToken,
                                             final MessengerSendClient sendClient) {
 
         logger.debug("Initializing MessengerReceiveClient - appSecret: {} | verifyToken: {}", appSecret, verifyToken);
