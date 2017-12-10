@@ -139,18 +139,19 @@ public class CallBackHandler {
                         break;
 
 
-//                    default:
-//                        sendReadReceipt(senderId);
-//                        sendTypingOn(senderId);
-//                        sendSpringDoc(senderId, messageText);
-//                        sendQuickReply(senderId);
-//                        sendTypingOff(senderId);
+                    default:
+                        sendReadReceipt(senderId);
+                        sendTypingOn(senderId);
+                       // sendSpringDoc(senderId, messageText);
+                        sendQuickReply(senderId);
+                        sendTypingOff(senderId);
                 }
             } catch (MessengerApiException | MessengerIOException e) {
                 handleSendException(e);
-            } catch (IOException e) {
-                handleIOException(e);
             }
+//            } catch (IOException e) {
+//                handleIOException(e);
+//            }
         };
     }
 
