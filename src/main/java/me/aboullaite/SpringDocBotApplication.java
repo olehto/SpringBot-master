@@ -20,7 +20,7 @@ public class SpringDocBotApplication {
 	 * @param pageAccessToken the generated {@code Page Access Token}
 	 */
 	@Bean
-	public MessengerSendClient messengerSendClient(@Value("${messenger4j.pageAccessToken}") String pageAccessToken) {
+	public MessengerSendClient messengerSendClient(@Value("EAAEb4X44nC4BAL5g7FehO4RO5dCjtCryA8C01813xWPnNBtK4yJbsCVNFtN5qjBPZCaGiYb8JYDo4Th99MOmMEgm11fCg6H0ycS54cJ74XjA2VZBw3AHOP3cDCIYMIUT9oN8nzTgMZBSIrOyOtBWJbxi7GgIZCPvY1oFXkgSz59elSmmnHAe") String pageAccessToken) {
 		logger.debug("Initializing MessengerSendClient - pageAccessToken: {}", pageAccessToken);
 		return MessengerPlatform.newSendClientBuilder(pageAccessToken).build();
 	}
