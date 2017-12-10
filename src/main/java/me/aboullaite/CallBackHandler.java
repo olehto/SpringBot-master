@@ -18,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -384,5 +386,16 @@ final List<Button> searchLink = Button.newListBuilder()
 
     private void handleIOException(Exception e) {
         logger.error("Could not open Spring.io page. An unexpected error occurred.", e);
+    }
+    
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
+    	 return (container -> {
+    	        container.setContextPath("");
+    	        if(System.getenv("PORT")!=null) {
+    	            container.setPort(Integer.valueOf(System.getenv("PORT"))); 
+
+    	        }
+    	    });
     }
 }
