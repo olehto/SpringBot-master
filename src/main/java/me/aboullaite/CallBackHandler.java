@@ -139,9 +139,11 @@ public class CallBackHandler {
             final Date timestamp = event.getTimestamp();
 
             User user = get_user_by_id(senderId);
-            System.out.println("userID:   "+user.getUser_id());
-            if(user!=null){
+            
+            if(null!=user){
             	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
+            } else {
+            	System.out.println("userID:  is empty ");
             }
             
             logger.info("Received message '{}' with text '{}' from user '{}' at '{}'",
@@ -470,7 +472,7 @@ final List<Button> searchLink = Button.newListBuilder()
             sql = "SELECT user_id, user_city, user_name, user_hobby FROM user_info WHERE user_id="+user_id;
             ResultSet rs = stmt.executeQuery(sql);
             StringBuffer sb = new StringBuffer();
-            User user = new User();
+            User user = null;
             while (rs.next()) {
                 String id = rs.getString("user_id");
                 String city = rs.getString("user_city");
