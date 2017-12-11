@@ -34,7 +34,7 @@ public class SpringDocBotApplication {
 		TimerTask timerTask = new MyTimerTask();
         //running timer task as daemon thread
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 0, 30*1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 24*3600*1000);
         System.out.println("TimerTask started");
 		
 		SpringApplication.run(SpringDocBotApplication.class, args);
