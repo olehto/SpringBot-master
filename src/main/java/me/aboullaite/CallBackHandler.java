@@ -469,10 +469,12 @@ final List<Button> searchLink = Button.newListBuilder()
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             String sql;
-            sql = "SELECT user_id, user_city, user_name, user_hobby FROM user_info WHERE user_id="+user_id;
+            sql = "SELECT user_id, user_city, user_name, user_hobby FROM user_info WHERE user_id='"+user_id+"'";
             ResultSet rs = stmt.executeQuery(sql);
-            StringBuffer sb = new StringBuffer();
             User user = null;
+            
+            System.out.println(rs);
+            
             while (rs.next()) {
                 String id = rs.getString("user_id");
                 String city = rs.getString("user_city");
