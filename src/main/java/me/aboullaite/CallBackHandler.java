@@ -453,7 +453,7 @@ final List<Button> searchLink = Button.newListBuilder()
                     u.getUser_hobby() + "');";
             ResultSet rs = stmt.executeQuery(sql);
         }catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return "result";
     }
