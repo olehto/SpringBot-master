@@ -448,7 +448,7 @@ final List<Button> searchLink = Button.newListBuilder()
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             String sql;
-            sql = "insert into cuser(user_id, user_name, user_city, user_hobby) values " +
+            sql = "insert into user_info(user_id, user_name, user_city, user_hobby) values " +
                     "('" + u.getUser_id()  + "', '" + u.getUser_name() + " ',' " + u.getUser_city() +  "', ' " +
                     u.getUser_hobby() + "');";
             ResultSet rs = stmt.executeQuery(sql);
