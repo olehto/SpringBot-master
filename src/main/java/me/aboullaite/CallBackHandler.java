@@ -139,7 +139,7 @@ public class CallBackHandler {
             final Date timestamp = event.getTimestamp();
 
             User user = get_user_by_id(senderId);
-            
+            System.out.println("userID:   "+user.getUser_id());
             if(user!=null){
             	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
             }
