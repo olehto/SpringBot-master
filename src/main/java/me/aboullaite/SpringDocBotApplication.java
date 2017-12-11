@@ -2,6 +2,10 @@ package me.aboullaite;
 
 import com.github.messenger4j.MessengerPlatform;
 import com.github.messenger4j.send.MessengerSendClient;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +30,13 @@ public class SpringDocBotApplication {
 	}
 
 	public static void main(String[] args) {
+		
+		TimerTask timerTask = new MyTimerTask();
+        //running timer task as daemon thread
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(timerTask, 0, 30*1000);
+        System.out.println("TimerTask started");
+		
 		SpringApplication.run(SpringDocBotApplication.class, args);
 	}
 }
