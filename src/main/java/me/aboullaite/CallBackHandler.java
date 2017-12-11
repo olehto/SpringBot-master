@@ -143,7 +143,7 @@ public class CallBackHandler {
             if(null!=user){
             	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
             } else {
-            	System.out.println("userID:  is empty ");
+            	System.out.println("userID: " + senderId +"  is empty ");
             }
             
             logger.info("Received message '{}' with text '{}' from user '{}' at '{}'",
