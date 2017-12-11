@@ -138,11 +138,11 @@ public class CallBackHandler {
             final String senderId = event.getSender().getId();
             final Date timestamp = event.getTimestamp();
 
-            User u = new User();
-            u.setUser_id(senderId);
-            u.setUser_city("Kharkiv");
-            u.setUser_hobby("codding");
-            u.setUser_name("Oleh");
+            User user = get_user_by_id(senderId);
+            
+            if(user!=null){
+            	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
+            }
             
             logger.info("Received message '{}' with text '{}' from user '{}' at '{}'",
                     messageId, messageText, senderId, timestamp);
@@ -152,7 +152,7 @@ public class CallBackHandler {
 
 
                     case "yo":
-                        sendTextMessage(senderId, "Hello, What I can do for you ? Type the word you're looking for");createUser(u);
+                        sendTextMessage(senderId, "Hello, What I can do for you ? Type the word you're looking for");
                         break;
 
                     case "great":
