@@ -478,11 +478,12 @@ final List<Button> searchLink = Button.newListBuilder()
                 String city = rs.getString("user_city");
                 String name = rs.getString("user_name");
                 String hb = rs.getString("user_hobby");
-               return user = new User(id,city, name, hb);
+               return (new User(id,city, name, hb));
             }
            
             return user;
         } catch (Exception e) {
+        	System.out.println(e);
             return null;
     }
     }
