@@ -480,7 +480,7 @@ final List<Button> searchLink = Button.newListBuilder()
                 String city = rs.getString("user_city");
                 String name = rs.getString("user_name");
                 String hb = rs.getString("user_hobby");
-               return (new User(id,city, name, hb));
+               return (new User(id,name, city, hb));
             }
            
             return user;
