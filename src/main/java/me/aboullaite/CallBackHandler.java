@@ -445,6 +445,9 @@ final List<Button> searchLink = Button.newListBuilder()
     
     public String createUser(User u) {
         try {
+        	
+        	if(get_user_by_id(u.getUser_id())==null){
+        	
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             String sql;
@@ -452,10 +455,34 @@ final List<Button> searchLink = Button.newListBuilder()
                     "('" + u.getUser_id()  + "', '" + u.getUser_name() + " ',' " + u.getUser_city() +  "', ' " +
                     u.getUser_hobby() + "');";
             ResultSet rs = stmt.executeQuery(sql);
+        } 
         }catch(Exception e){
             //e.printStackTrace();
         }
         return "result";
+    }
+    
+    public User get_user_by_id(String user_id) {
+        try {
+            Connection connection = getConnection();
+            Statement stmt = connection.createStatement();
+            String sql;
+            sql = "SELECT user_id, user_city, user_name, user_hobby FROM user_info WHERE user_id="+user_id;
+            ResultSet rs = stmt.executeQuery(sql);
+            StringBuffer sb = new StringBuffer();
+            User user = new User();
+            while (rs.next()) {
+                String id = rs.getString("user_id");
+                String city = rs.getString("user_city");
+                String name = rs.getString("user_name");
+                String hb = rs.getString("user_hobby");
+                user = new User(id,city, name, hb);
+            }
+           
+            return user;
+        } catch (Exception e) {
+            return null;
+    }
     }
     
 }
