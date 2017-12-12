@@ -149,14 +149,14 @@ public class CallBackHandler {
             try {
             	
             	if(messageText.toLowerCase().contains("my name is")){
-            		String name = messageText.substring(11, (messageText.length()-1));
+            		String name = messageText.substring(11, (messageText.length()));
             		b = true;
             		createUser(new User(senderId,name, "", "", ""));
             		sendTextMessage(senderId, "Ok, "+name+", I live in Kiev and you? (It will be easier for me if you'll answer like 'I live in Kiev'");
             	}
-            	
+            	System.out.println("Ooneeeeeeeeeee " + messageText.toLowerCase() +" :" + user.getUser_id());
             	if(messageText.toLowerCase().contains("i live in") && null!=user){
-            		String city = messageText.substring(10, (messageText.length()-1));
+            		String city = messageText.substring(10, (messageText.length()));
             		updateUserCity(user,city);
             		b = true;
             		sendTextMessage(senderId, "Fine, and the most interesting question: How much water did you drink ussaly?");
