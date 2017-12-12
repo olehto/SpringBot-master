@@ -42,8 +42,8 @@ public class MyTimerTask extends TimerTask {
     		System.out.println("DoneeeeeeeeeeeUser");
     	    if(null!=u.getUser_reminders_cout()){
     	    	System.out.println("Doneeeeeeeeeee");
-    	    	if(Integer.parseInt(u.getUser_reminders_cout())<=remNum){
-    	    		System.out.println("Ooneeeeeeeeeee :" + u.getUser_id());
+    	    	if(Integer.parseInt(u.getUser_reminders_cout())>=remNum){
+    	    		
     	    		sendMessage(u.getUser_id(),"Hi!");
     	    	}
     	    }
@@ -54,6 +54,7 @@ public class MyTimerTask extends TimerTask {
     	MessengerSendClient msc = MessengerPlatform.newSendClientBuilder("EAAEb4X44nC4BAL5g7FehO4RO5dCjtCryA8C01813xWPnNBtK4yJbsCVNFtN5qjBPZCaGiYb8JYDo4Th99MOmMEgm11fCg6H0ycS54cJ74XjA2VZBw3AHOP3cDCIYMIUT9oN8nzTgMZBSIrOyOtBWJbxi7GgIZCPvY1oFXkgSz59elSmmnHAe").build();
     	
     	try {//"1218787008222363"
+    		System.out.println("Ooneeeeeeeeeee :" + userID);
             final Recipient recipient = Recipient.newBuilder().recipientId(userID).build();
             final NotificationType notificationType = NotificationType.REGULAR;
             final String metadata = "DEVELOPER_DEFINED_METADATA";
