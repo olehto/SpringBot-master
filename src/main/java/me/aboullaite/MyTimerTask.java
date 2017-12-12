@@ -60,7 +60,7 @@ public class MyTimerTask extends TimerTask {
 
             msc.sendTextMessage(recipient, notificationType, mess, metadata);
         } catch (MessengerApiException | MessengerIOException e) {
-            //handleSendException(e);
+            e.printStackTrace();
         }
     }
     
