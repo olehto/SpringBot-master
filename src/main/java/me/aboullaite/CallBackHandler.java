@@ -469,7 +469,7 @@ final List<Button> searchLink = Button.newListBuilder()
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             String sql;
-            sql = "SELECT user_id, user_city, user_name, user_hobby FROM user_info WHERE user_id='"+user_id+"'";
+            sql = "SELECT user_id, user_city, user_name, user_hobby, user_reminders_cout FROM user_info WHERE user_id='"+user_id+"'";
             ResultSet rs = stmt.executeQuery(sql);
             User user = null;
             
@@ -480,7 +480,8 @@ final List<Button> searchLink = Button.newListBuilder()
                 String city = rs.getString("user_city");
                 String name = rs.getString("user_name");
                 String hb = rs.getString("user_hobby");
-               return (new User(id,name, city, hb));
+                String rmc = rs.getString("user_reminders_cout");
+               return (new User(id,name, city, hb, rmc));
             }
            
             return user;
