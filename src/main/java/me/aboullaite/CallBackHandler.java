@@ -487,7 +487,7 @@ final List<Button> searchLink = Button.newListBuilder()
     
     public String updateUserRemCount(User u, String rc) {
         try {
-        	if(get_user_by_id(u.getUser_id())==null){
+        	if(get_user_by_id(u.getUser_id())!=null){
         	
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
@@ -503,7 +503,7 @@ final List<Button> searchLink = Button.newListBuilder()
     
     public String updateUserCity(User u, String city) {
         try {
-        	if(get_user_by_id(u.getUser_id())==null){
+        	if(get_user_by_id(u.getUser_id())!=null){
         	
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
@@ -512,7 +512,7 @@ final List<Button> searchLink = Button.newListBuilder()
             ResultSet rs = stmt.executeQuery(sql);
         } 
         }catch(Exception e){
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         return "result";
     }
