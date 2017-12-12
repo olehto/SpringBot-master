@@ -154,7 +154,7 @@ public class CallBackHandler {
             		createUser(new User(senderId,name, "", "", ""));
             		sendTextMessage(senderId, "Ok, "+name+", I live in Kiev and you? (It will be easier for me if you'll answer like 'I live in Kiev'");
             	}
-            	System.out.println("Ooneeeeeeeeeee " + messageText.toLowerCase() +" :" + user.getUser_id());
+            	
             	if(messageText.toLowerCase().contains("i live in") && null!=user){
             		String city = messageText.substring(10, (messageText.length()));
             		updateUserCity(user,city);
@@ -167,6 +167,7 @@ public class CallBackHandler {
 
                     case "hi":
                     	if(null!=user){
+                    		System.out.println("Ooneeeeeeeeeee " + messageText.toLowerCase() +" :" + user.getUser_id());
                         	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
                         } else if(!b){
                         	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :), whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
