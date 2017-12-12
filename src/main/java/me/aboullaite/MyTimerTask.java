@@ -39,8 +39,11 @@ public class MyTimerTask extends TimerTask {
     private void completeTask() {
     	List<User> users = get_users();
     	for (User u : users) {
+    		System.out.println("DoneeeeeeeeeeeUser");
     	    if(null!=u.getUser_reminders_cout()){
+    	    	System.out.println("Doneeeeeeeeeee");
     	    	if(Integer.parseInt(u.getUser_reminders_cout())<=remNum){
+    	    		System.out.println("Ooneeeeeeeeeee");
     	    		sendMessage(u.getUser_id(),"Hi!");
     	    	}
     	    }
