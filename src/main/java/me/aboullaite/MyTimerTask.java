@@ -44,7 +44,7 @@ public class MyTimerTask extends TimerTask {
     	    	System.out.println("Doneeeeeeeeeee");
     	    	if(Integer.parseInt(u.getUser_reminders_cout())>=remNum){
     	    		
-    	    		sendMessage(u.getUser_id(),"Hi!");
+    	    		sendMessage("Hi!",u.getUser_id());
     	    	}
     	    }
     	}
