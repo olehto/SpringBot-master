@@ -23,7 +23,7 @@ import domain.User;
 
 public class MyTimerTask extends TimerTask {
 	
-	public int remNum = 0;
+	public int remNum;
 	
 	public MyTimerTask(int remNum){
 		this.remNum = remNum;
