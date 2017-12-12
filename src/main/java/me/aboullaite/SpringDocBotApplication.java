@@ -41,6 +41,8 @@ public class SpringDocBotApplication {
         timer.scheduleAtFixedRate(timerTask, 60*1000, 30*1000);
         System.out.println("TimerTask started");
 		
+        
+        
 		SpringApplication.run(SpringDocBotApplication.class, args);
 	}
 }

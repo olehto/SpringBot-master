@@ -1,5 +1,6 @@
 package me.aboullaite;
 
+
 import com.github.messenger4j.MessengerPlatform;
 import com.github.messenger4j.exceptions.MessengerApiException;
 import com.github.messenger4j.exceptions.MessengerIOException;
@@ -140,21 +141,36 @@ public class CallBackHandler {
 
             User user = get_user_by_id(senderId);
             
-            if(null!=user){
-            	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
-            } else {
-            	System.out.println("userID: " + senderId +"  is empty ");
-            }
+            
             
             logger.info("Received message '{}' with text '{}' from user '{}' at '{}'",
                     messageId, messageText, senderId, timestamp);
-
+            Boolean b = false;
             try {
+            	
+            	if(messageText.toLowerCase().contains("My name is")){
+            		String name = messageText.substring(11, (messageText.length()-1));
+            		b = true;
+            		createUser(new User(senderId,name, "", "", ""));
+            		sendTextMessage(senderId, "Ok, "+name+", I live in Kiev and you? (It will be easier for me if you'll answer like 'I live in Kiev'");
+            	}
+            	
+            	if(messageText.toLowerCase().contains("I live in") && null!=user){
+            		String city = messageText.substring(10, (messageText.length()-1));
+            		updateUserCity(user,city);
+            		b = true;
+            		sendTextMessage(senderId, "Fine, and the most interesting question: How much water did you drink ussaly?");
+            	}
+            	
                 switch (messageText.toLowerCase()) {
 
 
-                    case "yo":
-                        sendTextMessage(senderId, "Hello, What I can do for you ? Type the word you're looking for");
+                    case "hi":
+                    	if(null!=user){
+                        	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
+                        } else if(!b){
+                        	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :), whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
+                        }
                         break;
 
                     case "great":
@@ -166,7 +182,7 @@ public class CallBackHandler {
                         sendReadReceipt(senderId);
                         sendTypingOn(senderId);
                        //sendSpringDoc(senderId, messageText);
-                        sendQuickReply(senderId);
+                        //sendQuickReply(senderId);
                         sendTypingOff(senderId);
                 }
             } catch (MessengerApiException | MessengerIOException e) {
@@ -177,6 +193,10 @@ public class CallBackHandler {
 //            }
         };
          
+    }
+    
+    private void addMenu(){
+    	
     }
 
     private void sendSpringDoc(String recipientId, String keyword) throws MessengerApiException, MessengerIOException, IOException {
@@ -456,6 +476,38 @@ final List<Button> searchLink = Button.newListBuilder()
             sql = "insert into user_info(user_id, user_name, user_city, user_hobby) values " +
                     "('" + u.getUser_id()  + "', '" + u.getUser_name() + " ',' " + u.getUser_city() +  "', ' " +
                     u.getUser_hobby() + "');";
+            ResultSet rs = stmt.executeQuery(sql);
+        } 
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        return "result";
+    }
+    
+    public String updateUserRemCount(User u, String rc) {
+        try {
+        	if(get_user_by_id(u.getUser_id())==null){
+        	
+            Connection connection = getConnection();
+            Statement stmt = connection.createStatement();
+            String sql;
+            sql = "UPDATE user_info SET user_reminders_cout = '" + rc +"' WHERE user_id='"+u.getUser_id()+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+        } 
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        return "result";
+    }
+    
+    public String updateUserCity(User u, String city) {
+        try {
+        	if(get_user_by_id(u.getUser_id())==null){
+        	
+            Connection connection = getConnection();
+            Statement stmt = connection.createStatement();
+            String sql;
+            sql = "UPDATE user_info SET user_city = '" + city +"' WHERE user_id='"+u.getUser_id()+"'";
             ResultSet rs = stmt.executeQuery(sql);
         } 
         }catch(Exception e){
