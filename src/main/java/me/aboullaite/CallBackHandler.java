@@ -292,14 +292,14 @@ final List<Button> searchLink = Button.newListBuilder()
     }
     
     private void sendQuickReply2(String recipientId) throws MessengerApiException, MessengerIOException {
-        final List<QuickReply> quickReplies = QuickReply.newListBuilder()
+        final List<QuickReply> quickReplies1 = QuickReply.newListBuilder()
                 .addTextQuickReply("3 times a day", GOD_ACTION0).toList()
                 .addTextQuickReply("Twice a day", GOD_ACTION1).toList()
                 .addTextQuickReply("Once a day", GOD_ACTION2).toList()
                 .addTextQuickReply("Stop Reminders", GOD_ACTION3).toList()
                 .build();
 
-        this.sendClient.sendTextMessage(recipientId, "Thx!", quickReplies);
+        this.sendClient.sendTextMessage(recipientId, "Thx!", quickReplies1);
     }
 
     private void sendReadReceipt(String recipientId) throws MessengerApiException, MessengerIOException {
@@ -370,7 +370,7 @@ final List<Button> searchLink = Button.newListBuilder()
                     handleIOException(e);
                 }
 
-            sendTextMessage(senderId, "Let's try another one :D!");
+            //sendTextMessage(senderId, "Let's try another one :D!");
         };
     }
 
