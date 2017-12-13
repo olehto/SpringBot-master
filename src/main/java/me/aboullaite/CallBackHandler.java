@@ -299,7 +299,7 @@ final List<Button> searchLink = Button.newListBuilder()
                 .addTextQuickReply("Stop Reminders", GOD_ACTION3).toList()
                 .build();
 
-        this.sendClient.sendTextMessage(recipientId, "Thx!", quickReplies1);
+        this.sendClient.sendTextMessage(recipientId, "Please select a reminder frequency:", quickReplies1);
     }
 
     private void sendReadReceipt(String recipientId) throws MessengerApiException, MessengerIOException {
