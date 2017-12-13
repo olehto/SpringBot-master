@@ -43,11 +43,26 @@ public class MyTimerTask extends TimerTask {
     	    if(null!=u.getUser_reminders_cout()){
     	    	System.out.println("Doneeeeeeeeeee");
     	    	if(Integer.parseInt(u.getUser_reminders_cout())>=remNum){
-    	    		
-    	    		sendMessage("Hi!",u.getUser_id());
+    	    		//https://www.unitedforhealthierkids.pk/images/default-source/partners/Time-your%20water%20intake%20Large.png.png?Status=Master&sfvrsn=0
+    	    		//sendMessage("Hi!",u.getUser_id());
+    	    		try {
+						sendGifMessage(u.getUser_id(), "https://www.unitedforhealthierkids.pk/images/default-source/partners/Time-your%20water%20intake%20Large.png.png?Status=Master&sfvrsn=0");
+					} catch (MessengerApiException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (MessengerIOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
     	    	}
     	    }
     	}
+    }
+    
+    private void sendGifMessage(String recipientId, String gif) throws MessengerApiException, MessengerIOException {
+    	MessengerSendClient msc = MessengerPlatform.newSendClientBuilder("EAAEb4X44nC4BAL5g7FehO4RO5dCjtCryA8C01813xWPnNBtK4yJbsCVNFtN5qjBPZCaGiYb8JYDo4Th99MOmMEgm11fCg6H0ycS54cJ74XjA2VZBw3AHOP3cDCIYMIUT9oN8nzTgMZBSIrOyOtBWJbxi7GgIZCPvY1oFXkgSz59elSmmnHAe").build();
+    	
+    	msc.sendImageAttachment(recipientId, gif);
     }
     
     private void sendMessage(String mess, String userID){
