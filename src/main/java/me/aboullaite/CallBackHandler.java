@@ -61,6 +61,11 @@ public class CallBackHandler {
     public static final String GOOD_ACTION1 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION1";
     public static final String GOOD_ACTION2 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION2";
     public static final String GOOD_ACTION3 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION3";
+    
+    public static final String GOD_ACTION0 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOD_ACTION0";
+    public static final String GOD_ACTION1 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOD_ACTION1";
+    public static final String GOD_ACTION2 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOD_ACTION2";
+    public static final String GOD_ACTION3 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOD_ACTION3";
 
     private final MessengerReceiveClient receiveClient;
     private final MessengerSendClient sendClient;
@@ -147,12 +152,13 @@ public class CallBackHandler {
             
             logger.info("Received message '{}' with text '{}' from user '{}' at '{}'",
                     messageId, messageText, senderId, timestamp);
-            Boolean b = false;
+            Boolean b = false, c = false;
             try {
             	
             	if(messageText.toLowerCase().contains("my name is")){
             		String name = messageText.substring(11, (messageText.length()));
             		b = true;
+            		c = true;
             		createUser(new User(senderId,name, "", "", ""));
             		sendTextMessage(senderId, "Ok, "+name+", I live in Kiev and you? (It will be easier for me if you'll answer like 'I live in Kiev'");
             	}
@@ -161,6 +167,7 @@ public class CallBackHandler {
             		String city = messageText.substring(10, (messageText.length()));
             		updateUserCity(user,city);
             		b = true;
+            		c = true;
             		sendTextMessage(senderId, "Fine, and the most interesting question: How much water did you drink ussaly?");
             		sendQuickReply(senderId);
             	}
@@ -172,19 +179,24 @@ public class CallBackHandler {
                     	if(null!=user){
                     		System.out.println("Ooneeeeeeeeeee " + messageText.toLowerCase() +" :" + user.getUser_id());
                         	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
-                        } else if(!b){
+                        	c = true;
+                    	} else if(!b){
                         	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :), whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
-                        }
+                        	c = true;
+                    	}
                         break;
 
                     case "great":
                         sendTextMessage(senderId, "You're welcome :) keep rocking");
+                        c = true;
                         break;
 
 
                     default:
                         sendReadReceipt(senderId);
                         sendTypingOn(senderId);
+                        if(!c)
+                        sendTextMessage(senderId,"Sorry, but I didn't get it. I am a young YBot and still learning.");
                        //sendSpringDoc(senderId, messageText);
                         //sendQuickReply(senderId);
                         sendTypingOff(senderId);
@@ -276,7 +288,18 @@ final List<Button> searchLink = Button.newListBuilder()
                 .addTextQuickReply("I don't count", GOOD_ACTION3).toList()
                 .build();
 
-        this.sendClient.sendTextMessage(recipientId, "Was this helpful?!", quickReplies);
+        this.sendClient.sendTextMessage(recipientId, "Supper!", quickReplies);
+    }
+    
+    private void sendQuickReply2(String recipientId) throws MessengerApiException, MessengerIOException {
+        final List<QuickReply> quickReplies = QuickReply.newListBuilder()
+                .addTextQuickReply("3 times a day", GOD_ACTION0).toList()
+                .addTextQuickReply("Twice a day", GOD_ACTION1).toList()
+                .addTextQuickReply("Once a day", GOD_ACTION2).toList()
+                .addTextQuickReply("Stop Reminders", GOD_ACTION3).toList()
+                .build();
+
+        this.sendClient.sendTextMessage(recipientId, "Thx!", quickReplies);
     }
 
     private void sendReadReceipt(String recipientId) throws MessengerApiException, MessengerIOException {
@@ -303,10 +326,40 @@ final List<Button> searchLink = Button.newListBuilder()
 
 
                 try {
-                    if(quickReplyPayload.equals(GOOD_ACTION1))
-                    sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
-                    else
-                    sendGifMessage(senderId, "https://media.giphy.com/media/26ybx7nkZXtBkEYko/giphy.gif");
+				if (quickReplyPayload.equals(GOOD_ACTION0)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					sendQuickReply2(senderId);
+				}
+				if (quickReplyPayload.equals(GOOD_ACTION1)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					sendQuickReply2(senderId);
+				}
+				if (quickReplyPayload.equals(GOOD_ACTION2)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					sendQuickReply2(senderId);
+				}
+				if (quickReplyPayload.equals(GOOD_ACTION3)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					sendQuickReply2(senderId);
+				}
+                    
+				if (quickReplyPayload.equals(GOD_ACTION0)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					updateUserRemCount(senderId,"1");
+				}
+				if (quickReplyPayload.equals(GOD_ACTION1)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					updateUserRemCount(senderId,"2");
+				}
+				if (quickReplyPayload.equals(GOD_ACTION2)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					updateUserRemCount(senderId,"3");
+				}
+				if (quickReplyPayload.equals(GOD_ACTION3)) {
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					updateUserRemCount(senderId,"0");
+				}
+                    
                 } catch (MessengerApiException e) {
                     handleSendException(e);
                 } catch (MessengerIOException e) {
@@ -490,14 +543,14 @@ final List<Button> searchLink = Button.newListBuilder()
         return "result";
     }
     
-    public String updateUserRemCount(User u, String rc) {
+    public String updateUserRemCount(String uid, String rc) {
         try {
-        	if(get_user_by_id(u.getUser_id())!=null){
+        	if(get_user_by_id(uid)!=null){
         	
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             String sql;
-            sql = "UPDATE user_info SET user_reminders_cout = '" + rc +"' WHERE user_id='"+u.getUser_id()+"'";
+            sql = "UPDATE user_info SET user_reminders_cout = '" + rc +"' WHERE user_id='"+uid+"'";
             ResultSet rs = stmt.executeQuery(sql);
         } 
         }catch(Exception e){
