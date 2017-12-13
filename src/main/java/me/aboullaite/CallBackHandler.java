@@ -57,8 +57,10 @@ public class CallBackHandler {
 
     private static final String RESOURCE_URL =
             "https://raw.githubusercontent.com/fbsamples/messenger-platform-samples/master/node/public";
-    public static final String GOOD_ACTION = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION";
-    public static final String NOT_GOOD_ACTION = "DEVELOPER_DEFINED_PAYLOAD_FOR_NOT_GOOD_ACTION";
+    public static final String GOOD_ACTION0 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION0";
+    public static final String GOOD_ACTION1 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION1";
+    public static final String GOOD_ACTION2 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION2";
+    public static final String GOOD_ACTION3 = "DEVELOPER_DEFINED_PAYLOAD_FOR_GOOD_ACTION3";
 
     private final MessengerReceiveClient receiveClient;
     private final MessengerSendClient sendClient;
@@ -160,6 +162,7 @@ public class CallBackHandler {
             		updateUserCity(user,city);
             		b = true;
             		sendTextMessage(senderId, "Fine, and the most interesting question: How much water did you drink ussaly?");
+            		sendQuickReply(senderId);
             	}
             	
                 switch (messageText.toLowerCase()) {
@@ -267,8 +270,10 @@ final List<Button> searchLink = Button.newListBuilder()
 
     private void sendQuickReply(String recipientId) throws MessengerApiException, MessengerIOException {
         final List<QuickReply> quickReplies = QuickReply.newListBuilder()
-                .addTextQuickReply("Looks good", GOOD_ACTION).toList()
-                .addTextQuickReply("Nope!", NOT_GOOD_ACTION).toList()
+                .addTextQuickReply("1-2 cups", GOOD_ACTION0).toList()
+                .addTextQuickReply("3-5 cups", GOOD_ACTION1).toList()
+                .addTextQuickReply("6 and more", GOOD_ACTION2).toList()
+                .addTextQuickReply("I don't count", GOOD_ACTION3).toList()
                 .build();
 
         this.sendClient.sendTextMessage(recipientId, "Was this helpful?!", quickReplies);
@@ -298,7 +303,7 @@ final List<Button> searchLink = Button.newListBuilder()
 
 
                 try {
-                    if(quickReplyPayload.equals(GOOD_ACTION))
+                    if(quickReplyPayload.equals(GOOD_ACTION1))
                     sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
                     else
                     sendGifMessage(senderId, "https://media.giphy.com/media/26ybx7nkZXtBkEYko/giphy.gif");
@@ -512,7 +517,7 @@ final List<Button> searchLink = Button.newListBuilder()
             ResultSet rs = stmt.executeQuery(sql);
         } 
         }catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return "result";
     }
