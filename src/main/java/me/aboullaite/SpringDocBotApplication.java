@@ -36,9 +36,9 @@ public class SpringDocBotApplication {
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(timerTask, 60*1000, 24*3600*1000);
         timerTask = new MyTimerTask(2);
-        timer.scheduleAtFixedRate(timerTask, 8*3600*1000, 24*3600*1000);//8*3600*1000, 24*3600*1000
+        timer.scheduleAtFixedRate(timerTask, 3*360*1000, 24*3600*1000);//8*3600*1000, 24*3600*1000
         timerTask = new MyTimerTask(3);
-        timer.scheduleAtFixedRate(timerTask, 12*3600*1000, 24*3600*1000);
+        timer.scheduleAtFixedRate(timerTask, 10*360*1000, 24*3600*1000);
         System.out.println("TimerTask started");
 		
         
