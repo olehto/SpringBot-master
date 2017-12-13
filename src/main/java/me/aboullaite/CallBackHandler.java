@@ -168,7 +168,7 @@ public class CallBackHandler {
             		updateUserCity(user,city);
             		b = true;
             		c = true;
-            		sendTextMessage(senderId, "Fine, and the most interesting question: How much water did you drink ussaly?");
+            		sendTextMessage(senderId, "Fine, and the most interesting question.");
             		sendQuickReply(senderId);
             	}
             	
@@ -288,7 +288,7 @@ final List<Button> searchLink = Button.newListBuilder()
                 .addTextQuickReply("I don't count", GOOD_ACTION3).toList()
                 .build();
 
-        this.sendClient.sendTextMessage(recipientId, "Supper!", quickReplies);
+        this.sendClient.sendTextMessage(recipientId, "How much water did you drink ussaly?", quickReplies);
     }
     
     private void sendQuickReply2(String recipientId) throws MessengerApiException, MessengerIOException {
@@ -327,37 +327,41 @@ final List<Button> searchLink = Button.newListBuilder()
 
                 try {
 				if (quickReplyPayload.equals(GOOD_ACTION0)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					//sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					sendQuickReply2(senderId);
 				}
 				if (quickReplyPayload.equals(GOOD_ACTION1)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					//sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					sendQuickReply2(senderId);
 				}
 				if (quickReplyPayload.equals(GOOD_ACTION2)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					//sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					sendQuickReply2(senderId);
 				}
 				if (quickReplyPayload.equals(GOOD_ACTION3)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					//sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					sendQuickReply2(senderId);
 				}
                     
 				if (quickReplyPayload.equals(GOD_ACTION0)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					updateUserRemCount(senderId,"1");
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					
 				}
 				if (quickReplyPayload.equals(GOD_ACTION1)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					updateUserRemCount(senderId,"2");
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					
 				}
 				if (quickReplyPayload.equals(GOD_ACTION2)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					updateUserRemCount(senderId,"3");
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					
 				}
 				if (quickReplyPayload.equals(GOD_ACTION3)) {
-					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
 					updateUserRemCount(senderId,"0");
+					sendGifMessage(senderId, "https://media.giphy.com/media/3oz8xPxTUeebQ8pL1e/giphy.gif");
+					
 				}
                     
                 } catch (MessengerApiException e) {
