@@ -181,7 +181,10 @@ public class CallBackHandler {
                         	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
                         	c = true;
                     	} else if(!b){
-                        	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :). Some information abot myself: I can ask you about your name and where did you live, later I will ask you about how mush cups of watter did you ussualy drink, than I will propose you to make a reminders. Finaly I will send you several messages per day (not more than 3) to kindly remind you about water. Lets start. :) Whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
+                        	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :). Some information abot myself: I can ask you about your name and where did you live.");
+                        	sendTextMessage(senderId, "Later I will ask you about how mush cups of watter did you ussualy drink, than I will propose you to make a reminders.");
+                        	sendTextMessage(senderId, "And finaly I will send you several messages per day (not more than 3) to kindly remind you about water. Lets start. :) Whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
+                        	
                         	c = true;
                     	}
                         break;
