@@ -12,6 +12,7 @@ import com.github.messenger4j.send.*;
 import com.github.messenger4j.send.buttons.Button;
 import com.github.messenger4j.send.templates.GenericTemplate;
 
+import co.aurasphere.botmill.core.annotation.Bot;
 import domain.User;
 import me.aboullaite.domain.SearchResult;
 import org.jsoup.Jsoup;
@@ -50,7 +51,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by aboullaite on 2017-02-26.
  */
-
+@Bot
 @RestController
 @RequestMapping("/callback")
 public class CallBackHandler {

@@ -66,18 +66,18 @@ public class MyTimerTask extends TimerTask {
     }
     
     private void sendMessage(String mess, String userID){
-    	MessengerSendClient msc = MessengerPlatform.newSendClientBuilder("EAAEb4X44nC4BAL5g7FehO4RO5dCjtCryA8C01813xWPnNBtK4yJbsCVNFtN5qjBPZCaGiYb8JYDo4Th99MOmMEgm11fCg6H0ycS54cJ74XjA2VZBw3AHOP3cDCIYMIUT9oN8nzTgMZBSIrOyOtBWJbxi7GgIZCPvY1oFXkgSz59elSmmnHAe").build();
+    	//MessengerSendClient msc = MessengerPlatform.newSendClientBuilder("EAAEb4X44nC4BAL5g7FehO4RO5dCjtCryA8C01813xWPnNBtK4yJbsCVNFtN5qjBPZCaGiYb8JYDo4Th99MOmMEgm11fCg6H0ycS54cJ74XjA2VZBw3AHOP3cDCIYMIUT9oN8nzTgMZBSIrOyOtBWJbxi7GgIZCPvY1oFXkgSz59elSmmnHAe").build();
     	
-    	try {//"1218787008222363"
-    		System.out.println("Ooneeeeeeeeeee :" + userID);
-            final Recipient recipient = Recipient.newBuilder().recipientId(userID).build();
-            final NotificationType notificationType = NotificationType.REGULAR;
-            final String metadata = "DEVELOPER_DEFINED_METADATA";
-
-            msc.sendTextMessage(recipient, notificationType, mess, metadata);
-        } catch (MessengerApiException | MessengerIOException e) {
-            e.printStackTrace();
-        }
+//    	try {//"1218787008222363"
+//    		System.out.println("Ooneeeeeeeeeee :" + userID);
+//            final Recipient recipient = Recipient.newBuilder().recipientId(userID).build();
+//            final NotificationType notificationType = NotificationType.REGULAR;
+//            final String metadata = "DEVELOPER_DEFINED_METADATA";
+//
+//            //msc.sendTextMessage(recipient, notificationType, mess, metadata);
+//        } catch (MessengerApiException | MessengerIOException e) {
+//            e.printStackTrace();
+//        }
     }
     
     public List<User> get_users() {
