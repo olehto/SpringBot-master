@@ -13,6 +13,7 @@ import com.github.messenger4j.send.buttons.Button;
 import com.github.messenger4j.send.templates.GenericTemplate;
 
 import co.aurasphere.botmill.core.annotation.Bot;
+import co.aurasphere.botmill.fb.FbBot;
 import domain.User;
 import me.aboullaite.domain.SearchResult;
 import org.jsoup.Jsoup;
@@ -54,7 +55,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Bot
 @RestController
 @RequestMapping("/callback")
-public class CallBackHandler {
+public class CallBackHandler extends FbBot  {
 
     private static final Logger logger = LoggerFactory.getLogger(CallBackHandler.class);
 
