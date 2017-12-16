@@ -1,7 +1,9 @@
 package me.aboullaite;
 
-import com.github.messenger4j.MessengerPlatform;
-import com.github.messenger4j.send.MessengerSendClient;
+import com.github.messenger4j.Messenger;
+//import com.github.messenger4j.MessengerPlatform;
+//import com.github.messenger4j.send.MessengerSendClient;
+import com.github.messenger4j.spi.MessengerHttpClient;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,9 +26,9 @@ public class SpringDocBotApplication {
 	 * @param pageAccessToken the generated {@code Page Access Token}
 	 */
 	@Bean
-	public MessengerSendClient messengerSendClient(@Value("${messenger4j.pageAccessToken}") String pageAccessToken) {
+	public Messenger messengerSendClient(@Value("${messenger4j.pageAccessToken}") String pageAccessToken) {
 		logger.debug("Initializing MessengerSendClient - pageAccessToken: {}", pageAccessToken);
-		return MessengerPlatform.newSendClientBuilder(pageAccessToken).build();
+		return Messenger.create(pageAccessToken, "2749048215", "28115df6638c239afacd1a3d1c2981f6");
 	}
 
 	public static void main(String[] args) {
