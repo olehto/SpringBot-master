@@ -179,61 +179,60 @@ public class CallBackHandler {
                     	if(null!=user){
                     		System.out.println("Ooneeeeeeeeeee " + messageText.toLowerCase() +" :" + user.getUser_id());
                         	sendTextMessage(senderId, "Hello, " + user.getUser_name() + ", how is your doing? Whats new in "+ user.getUser_city()+"?" );
+                        
+                        	
+                        	 final List<Button> firstLink = Button.newListBuilder()
+                                     .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
+                                     .build();
+                     final List<Button> secondLink = Button.newListBuilder()
+                                     .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
+                                     .build();
+                     final List<Button> thirdtLink = Button.newListBuilder()
+                                     .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
+                                     .build();
+                     final List<Button> searchLink = Button.newListBuilder()
+                                     .addUrlButton("Open Link", ("https://spring.io/search?q=").concat("")).toList()
+                                     .build();
+
+
+
+                             final GenericTemplate genericTemplate = GenericTemplate.newBuilder()
+                                     .addElements()
+                                     .addElement("title")
+                                     .subtitle("title")
+                                     .itemUrl("https://spring.io/search?q=")
+                                     .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
+                                     .buttons(firstLink)
+                                     .toList()
+                                     .addElement("title")
+                                     .subtitle("title")
+                                     .itemUrl("https://spring.io/search?q=")
+                                     .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
+                                     .buttons(secondLink)
+                                     .toList()
+                                     .addElement("title")
+                                     .subtitle("title")
+                                     .itemUrl("https://spring.io/search?q=")
+                                     .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
+                                     .buttons(thirdtLink)
+                                     .toList()
+                                     .addElement("All results " + 2)
+                                     .subtitle("Spring Search Result")
+                                     .itemUrl(("https://spring.io/search?q=").concat(""))
+                                     .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
+                                     .buttons(searchLink)
+                                     .toList()
+                                     .done()
+                                     .build();
+
+                             this.sendClient.sendTemplate(senderId, genericTemplate);
+                        	
+                        	
                         	c = true;
                     	} else if(!b){
                         	sendTextMessage(senderId, "Hello! My name is YBot and I am a young reminder :). Some information abot myself: I can ask you about your name and where did you live.");
                         	sendTextMessage(senderId, "Later I will ask you about how mush cups of watter did you ussualy drink, than I will propose you to make a reminders.");
                         	sendTextMessage(senderId, "And finaly I will send you several messages per day (not more than 3) to kindly remind you about water. Lets start. :) Whats is your name? (It will be easier for me if you'll answer like 'My name is YBot'");
-                        	
-                        	
-                        	
-                        	  final List<Button> firstLink = Button.newListBuilder()
-                                      .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
-                                      .build();
-                      final List<Button> secondLink = Button.newListBuilder()
-                                      .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
-                                      .build();
-                      final List<Button> thirdtLink = Button.newListBuilder()
-                                      .addUrlButton("Open Link", "https://spring.io/search?q=").toList()
-                                      .build();
-                      final List<Button> searchLink = Button.newListBuilder()
-                                      .addUrlButton("Open Link", ("https://spring.io/search?q=").concat("")).toList()
-                                      .build();
-
-
-
-                              final GenericTemplate genericTemplate = GenericTemplate.newBuilder()
-                                      .addElements()
-                                      .addElement("title")
-                                      .subtitle("title")
-                                      .itemUrl("https://spring.io/search?q=")
-                                      .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
-                                      .buttons(firstLink)
-                                      .toList()
-                                      .addElement("title")
-                                      .subtitle("title")
-                                      .itemUrl("https://spring.io/search?q=")
-                                      .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
-                                      .buttons(secondLink)
-                                      .toList()
-                                      .addElement("title")
-                                      .subtitle("title")
-                                      .itemUrl("https://spring.io/search?q=")
-                                      .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
-                                      .buttons(thirdtLink)
-                                      .toList()
-                                      .addElement("All results " + 2)
-                                      .subtitle("Spring Search Result")
-                                      .itemUrl(("https://spring.io/search?q=").concat(""))
-                                      .imageUrl("https://upload.wikimedia.org/wikipedia/en/2/20/Pivotal_Java_Spring_Logo.png")
-                                      .buttons(searchLink)
-                                      .toList()
-                                      .done()
-                                      .build();
-
-                              this.sendClient.sendTemplate(senderId, genericTemplate);
-                        	
-                        	
                         	
                         	c = true;
                     	}
