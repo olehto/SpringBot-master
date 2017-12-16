@@ -13,6 +13,13 @@ import com.github.messenger4j.send.buttons.Button;
 import com.github.messenger4j.send.templates.GenericTemplate;
 
 import co.aurasphere.botmill.core.base.BotMillServlet;
+import co.aurasphere.botmill.fb.api.MessengerProfileApi;
+import co.aurasphere.botmill.fb.model.api.messengerprofile.HomeUrl;
+import co.aurasphere.botmill.fb.model.api.messengerprofile.persistentmenu.CallToActionNested;
+import co.aurasphere.botmill.fb.model.api.messengerprofile.persistentmenu.PersistentMenu;
+import co.aurasphere.botmill.fb.model.outcoming.factory.ButtonFactory;
+import co.aurasphere.botmill.fb.model.outcoming.template.button.WebViewHeightRatioType;
+import co.aurasphere.botmill.fb.model.outcoming.template.button.WebViewShareButton;
 import domain.User;
 import me.aboullaite.domain.SearchResult;
 import org.jsoup.Jsoup;
@@ -52,7 +59,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping("/callback")
-public class CallBackHandler extends BotMillServlet{
+public class CallBackHandler extends FbBotConfiguration{
 
     private static final Logger logger = LoggerFactory.getLogger(CallBackHandler.class);
 
@@ -97,6 +104,34 @@ public class CallBackHandler extends BotMillServlet{
                 .fallbackEventHandler(newFallbackEventHandler())
                 .build();
         this.sendClient = sendClient;
+        
+        MessengerProfileApi.setGetStartedButton("get_started");
+		MessengerProfileApi.setGreetingMessage("Hello!");
+		
+		List<PersistentMenu> persistentMenus = new ArrayList<PersistentMenu>();
+		PersistentMenu persistentMenu = new PersistentMenu("default", false);
+		
+		persistentMenu.addCallToAction(ButtonFactory.createPostbackButton("Menu 1", "menu1"));
+		persistentMenu.addCallToAction(ButtonFactory.createPostbackButton("Menu 2", "menu2"));
+		
+		CallToActionNested theNestedMenu = new CallToActionNested("Menu 3 Nested");
+		theNestedMenu.addCallToActionButton(ButtonFactory.createPostbackButton("Nested1", "nested1"));
+		theNestedMenu.addCallToActionButton(ButtonFactory.createPostbackButton("Nested2", "nested2"));
+		theNestedMenu.addCallToActionButton(ButtonFactory.createPostbackButton("Nested3", "nested3"));
+		persistentMenu.addCallToAction(theNestedMenu);
+		
+		persistentMenus.add(persistentMenu);
+		
+		MessengerProfileApi.setPersistentMenus(persistentMenus);
+		
+		HomeUrl homeUrl = new HomeUrl();
+		homeUrl.setInTest(true);
+		homeUrl.setUrl("https://extensionlink.co");
+		homeUrl.setWebviewHeightRatio(WebViewHeightRatioType.TALL);
+		homeUrl.setWebviewShareButton(WebViewShareButton.SHOW);
+		
+		MessengerProfileApi.setHomeUrl(homeUrl);
+        
     }
 
     /**
