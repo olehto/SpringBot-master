@@ -59,7 +59,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping("/callback")
-public class CallBackHandler extends FbBotConfiguration{
+public class CallBackHandler{
 
     private static final Logger logger = LoggerFactory.getLogger(CallBackHandler.class);
 
