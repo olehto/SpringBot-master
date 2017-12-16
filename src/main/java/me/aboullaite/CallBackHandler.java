@@ -12,6 +12,7 @@ import com.github.messenger4j.send.*;
 import com.github.messenger4j.send.buttons.Button;
 import com.github.messenger4j.send.templates.GenericTemplate;
 
+import co.aurasphere.botmill.core.base.BotMillServlet;
 import domain.User;
 import me.aboullaite.domain.SearchResult;
 import org.jsoup.Jsoup;
@@ -51,7 +52,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping("/callback")
-public class CallBackHandler {
+public class CallBackHandler extends BotMillServlet{
 
     private static final Logger logger = LoggerFactory.getLogger(CallBackHandler.class);
 
